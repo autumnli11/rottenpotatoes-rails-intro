@@ -15,22 +15,20 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     @checked_ratings = @all_ratings
 
-    
-    if params[:ratings]
-      session[:ratings] = params[:ratings]
-    end
-
     if params[:sort_by]
       session[:sort_by] = params[:sort_by]
+    elsif session [:sort_by]
+      params[:sort_by] = session[:sort_by]
+      flash.keep
+      redirect_to movies_path(params)
     end
 
-    if params[:sort_by].nil? || params[:ratings].nil? 
-      if session[:ratings] || session[:sort_by]
-        @ratings = session[:rating]
-        @sorting = session[:sort_by]
-        flash.keep
-        redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
-      end
+    if params[:ratings]
+      session[:ratings] = params[:ratings]
+    elsif session [:ratings]
+      params[:ratings] = session[:ratings]
+      flash.keep
+      redirect_to movies_path(params)
     end
 
     if session[:ratings]
