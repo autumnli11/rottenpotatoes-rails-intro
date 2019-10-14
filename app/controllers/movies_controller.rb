@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     @all_ratings = Movie.get_all_ratings
-    @ratings = params[:rating]
+    @ratings = session[:rating].keys()
     @checked_ratings = @all_ratings
 
     
@@ -26,7 +26,7 @@ class MoviesController < ApplicationController
     end
 
     if params[:sort_by].nil? && params[:ratings].nil? && session[:ratings] && session[:sort_by]
-      @ratings = session[:rating]
+      @ratings = session[:rating].keys()
       @sorting = session[:sort_by]
       flash.keep
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
