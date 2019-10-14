@@ -24,7 +24,8 @@ class MoviesController < ApplicationController
       session[:sort_by] = params[:sort_by]
     end
 
-    if params[:sort_by].nil? && params[:ratings].nil? && session[:ratings] && session[:sort_by]
+    if params[:sort_by].nil? || params[:ratings].nil? 
+      if session[:ratings] || session[:sort_by]
       @ratings = session[:rating]
       @sorting = session[:sort_by]
       flash.keep
