@@ -30,6 +30,7 @@ class MoviesController < ApplicationController
       @sorting = session[:sort_by]
       flash.keep
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
+      end
     end
 
     if session[:ratings]
