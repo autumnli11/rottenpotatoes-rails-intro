@@ -11,12 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.with_ratings(['G', 'R'])
+    @movies = Movie.all
     @all_ratings = Movie.get_all_ratings
     @checked_ratings = @all_ratings
 
     
-    if params.key?(:ratings)
+    if params[:ratings]
       @checked_ratings = params.keys()
       @movies = Movie.with_ratings(@checked_ratings)
     end
