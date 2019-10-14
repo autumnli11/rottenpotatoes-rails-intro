@@ -38,12 +38,8 @@ class MoviesController < ApplicationController
 
     if session[:sort_by] == "title"
       @movies = @movies.order(:title)
-      @title_header = 'hilite'
     elsif session[:sort_by] == "release_date"
       @movies = @movies.order(:release_date)
-      @release_header ='hilite'    
-    else
-      
     end
   end
 
