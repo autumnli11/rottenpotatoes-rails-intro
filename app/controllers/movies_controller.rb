@@ -18,6 +18,7 @@ class MoviesController < ApplicationController
     
     if params[:ratings]
       session[:ratings] = params[:ratings]
+      @ratings = params[:rating]
     end
 
     if params[:sort_by]
