@@ -15,7 +15,6 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
     @checked_ratings = @all_ratings
 
-    
     if params[:ratings]
       session[:ratings] = params[:ratings]
     end
@@ -25,7 +24,7 @@ class MoviesController < ApplicationController
     end
 
     if params[:sort_by].nil? && params[:ratings].nil? 
-      if session[:ratings] || session[:sort_by]
+      if session[:ratings] && session[:sort_by]
         @ratings = session[:rating]
         @sorting = session[:sort_by]
         flash.keep
