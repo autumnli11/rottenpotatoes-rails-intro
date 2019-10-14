@@ -15,15 +15,15 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.get_all_ratings
 
     
-    # if params.key?(:ratings)
-    #   @checked_ratings = params.keys()
-    # elsif session[:ratings]
-    #   @checked_ratings = session.keys()
-    # else
-    #   @checked_ratings = @all_ratings
-    # end
+    if params.key?(:ratings)
+      @checked_ratings = params.keys()
+    elsif session[:ratings]
+      @checked_ratings = session.keys()
+    else
+      @checked_ratings = @all_ratings
+    end
 
-    @movies = Movie.with_ratings(@all_ratings)
+    @movies = Movie.with_ratings(@checked_ratings)
 
     if params[:sort_by] == "title"
       @movies = @movies.order(:title)
