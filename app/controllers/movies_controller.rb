@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.all
+    @movies = Movie.with_ratings(['G'])
     @all_ratings = Movie.get_all_ratings
     @checked_ratings = @all_ratings
 
