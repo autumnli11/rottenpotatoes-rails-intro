@@ -17,14 +17,29 @@ class MoviesController < ApplicationController
 
     
     if params[:ratings]
-      @checked_ratings = params[:ratings].keys()
+      session[:rating] = params[:rating]
+      @ratings = session[:rating]
+    end
+
+    if params[:sort_by]
+      session[:sort_by] = params[:sort_by]
+      @sorting = session[:sort_by]
+    end
+
+    if params[:sort_by].nil? && params[:ratings].nil? && session[:ratings]
+      flash.keep
+      redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
+    end
+
+    if session[:rating]
+      @checked_ratings = session[:ratings].keys()
       @movies = Movie.with_ratings(@checked_ratings)
     end
 
-    if params[:sort_by] == "title"
+    if session[:sort_by] == "title"
       @movies = @movies.order(:title)
       @title_header = 'hilite'
-    elsif params[:sort_by] == "release_date"
+    elsif session[:sort_by] == "release_date"
       @movies = @movies.order(:release_date)
       @release_header ='hilite'    
     end
