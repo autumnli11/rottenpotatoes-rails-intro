@@ -22,7 +22,7 @@ class MoviesController < ApplicationController
       @checked_ratings = @all_ratings
     end
 
-    @movie = Moive.with_ratings(@checked_ratings)
+    @movie = Movie.with_ratings(@checked_ratings)
 
     if params[:sort_by] == "title"
       @movies = @movies.order(:title)
