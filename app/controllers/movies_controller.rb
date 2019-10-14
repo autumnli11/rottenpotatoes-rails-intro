@@ -38,10 +38,10 @@ class MoviesController < ApplicationController
 
     if session[:sort_by] == "title"
       @movies = @movies.order(:title)
-      @hilite = 'hilite'
+      @hilite_title = 'hilite'
     elsif session[:sort_by] == "release_date"
       @movies = @movies.order(:release_date)
-      @hilite ='hilite'
+      @hilite_release_date ='hilite'
     end
   end
 
