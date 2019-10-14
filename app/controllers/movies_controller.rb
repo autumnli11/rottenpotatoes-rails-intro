@@ -18,15 +18,15 @@ class MoviesController < ApplicationController
     
     if params[:ratings]
       session[:rating] = params[:rating]
-      @ratings = session[:rating]
     end
 
     if params[:sort_by]
       session[:sort_by] = params[:sort_by]
-      @sorting = session[:sort_by]
     end
 
     if params[:sort_by].nil? && params[:ratings].nil? && session[:ratings]
+      @ratings = session[:rating]
+      @sorting = session[:sort_by]
       flash.keep
       redirect_to movies_path(:sort_by => @sorting, :ratings => @ratings)
     end
