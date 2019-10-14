@@ -14,13 +14,14 @@ class MoviesController < ApplicationController
     #@movies = Movie.all
     @all_ratings = Movie.get_all_ratings
 
-    if params.key?(:ratings)
-      @checked_ratings = params.keys()
-    elsif session[:ratings]
-      @checked_ratings = session.keys()
-    else
-      @checked_ratings = @all_ratings
-    end
+    
+    # if params.key?(:ratings)
+    #   @checked_ratings = params.keys()
+    # elsif session[:ratings]
+    #   @checked_ratings = session.keys()
+    # else
+    #   @checked_ratings = @all_ratings
+    # end
 
     @movie = Movie.with_ratings(@checked_ratings)
 
